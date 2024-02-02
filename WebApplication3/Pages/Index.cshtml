@@ -1,0 +1,32 @@
+﻿@page
+@model IndexModel
+@inject IHttpContextAccessor contxt;
+@{
+    ViewData["Title"] = "Home page";
+}
+
+@* <div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div> *@
+
+<h1>Home</h1>
+
+@if (!string.IsNullOrEmpty(Model.DecryptedNRIC))
+{
+    <p>Decrypted NRIC: @Model.DecryptedNRIC</p>
+    <p>First Name: @Model.FirstName</p>
+    <p>Last Name: @Model.LastName</p>
+    <p>Gender: @Model.Gender</p>
+    <p>Email Address: @Model.Email</p>
+    <p>Date of Birth: @Model.DateOfBirth</p>
+    <p>Resume: @Model.Resume</p>
+    <p>Who Am I: @Model.WhoAmI</p>
+    <br />
+
+    <p>Details from session:</p>
+    <ul>
+        <li> User email: @contxt.HttpContext.Session.GetString("UserEmail")</li>
+        <li> User id: @contxt.HttpContext.Session.GetInt32("UserId")</li>
+    </ul>
+}
